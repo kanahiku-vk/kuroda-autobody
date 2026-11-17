@@ -23,12 +23,12 @@ export const site = {
   formSlug: 'kuroda-autobody',
 
   analytics: {
-    /** Google Tag Manager container. Empty until the client GTM is created. */
-    googleTagManagerId: '',
+    /** Google Tag Manager container. */
+    googleTagManagerId: 'GTM-5WZX8ZZM',
     /** Optional. Leave empty when tags are installed through GTM. */
     googleAnalyticsId: '',
     /** Search Console HTML-tag verification (`content=` value only). */
-    googleSiteVerificationId: '',
+    googleSiteVerificationId: 'XAJL8LBm7KDwaJETyKOdyWB7p4Kcta_gq7yGmJkXJiI',
   },
 } as const;
 
