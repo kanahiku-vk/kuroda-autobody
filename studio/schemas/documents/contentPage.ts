@@ -184,7 +184,7 @@ const featuresSection = defineArrayMember({
   fields: [
     eyebrowField(),
     ...headingOptionalAccent(60, 40),
-    optionalText('lead', 'Intro paragraph', 320, `Optional. Shown under the heading. ${BOLD}`),
+    optionalText('lead', 'Intro paragraph', 400, `Optional. Shown under the heading. ${BOLD}`),
     defineField({
       name: 'columns',
       title: 'Columns (desktop)',
@@ -260,7 +260,7 @@ const featuresSection = defineArrayMember({
           name: 'featureGroup',
           fields: [
             line('title', 'Sub-heading', 60),
-            optionalText('lead', 'Description', 320, 'Optional. Shown under the sub-heading.'),
+            optionalText('lead', 'Description', 400, 'Optional. Shown under the sub-heading.'),
             defineField({
               name: 'items',
               title: 'Features',
@@ -337,7 +337,7 @@ const tableSection = defineArrayMember({
   fields: [
     eyebrowField(),
     ...headingOptionalAccent(60, 40),
-    optionalText('lead', 'Intro paragraph', 320, 'Optional. Shown under the heading.'),
+    optionalText('lead', 'Intro paragraph', 400, 'Optional. Shown under the heading.'),
     defineField({
       name: 'columns',
       title: 'Column headings',
@@ -641,7 +641,7 @@ export const contentPage = defineType({
           ],
           description:
             'Page addresses, e.g. /repair-process/ or /warranty/ (start and end with “/”). The link name comes from the site menu. Addresses that are not real pages are skipped.',
-          validation: (r) => r.required().min(1).max(6),
+          validation: (r) => r.required().min(1).max(12),
         }),
       ]),
       hidden: ({ document }) => !document?.related,

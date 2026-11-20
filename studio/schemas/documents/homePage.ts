@@ -169,7 +169,13 @@ export const homePage = defineType({
       paragraph('quote', 'Pull quote', 160, 'Include the quotation marks “ ”.'),
       line('quoteAttribution', 'Quote attribution', 60, 'e.g. “The Kuroda family principle”.'),
       ...photo('', 'Archive photo'),
-      line('caption', 'Photo caption', 80),
+      defineField({
+        name: 'caption',
+        title: 'Photo caption',
+        type: 'string',
+        description: 'Optional — leave empty for no caption under the photo.',
+        validation: (r) => r.max(80),
+      }),
       items(
         'stats',
         'Stats',

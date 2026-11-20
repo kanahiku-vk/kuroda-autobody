@@ -15,6 +15,7 @@ const PAGES: [string, string][] = [
   ['/privacy-policy/', 'Privacy Policy'],
   ['/terms/', 'Terms'],
   ['/accessibility/', 'Accessibility Statement'],
+  ['/careers/', 'Careers'],
   ['/blog/', 'Blog list'],
   ['/blog/*', 'Blog articles (all posts — closing photo only)'],
 ];

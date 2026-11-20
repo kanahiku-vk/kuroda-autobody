@@ -215,7 +215,7 @@ export const homeFallback: HomeContent = {
     body: 'Founded as a small service station in ʻAiea, now run by the third and fourth generations of the Kuroda family in Waipahu.',
     quote: '“Do it right, treat people right, and treat every car as if our own family were driving it.”',
     quoteAttribution: 'The Kuroda family principle',
-    caption: 'Our founding family service station in ʻAiea, 1938.',
+    caption: '',
     imageAlt: 'Our founding family service station in ʻAiea, 1938.',
     stats: [
       { value: '1938', label: 'Founded in ʻAiea' },

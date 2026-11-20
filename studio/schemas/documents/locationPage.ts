@@ -73,7 +73,7 @@ export const locationPage = defineType({
         [1, 10],
         [
           line('label', 'Label', 30, 'e.g. “Phone”.'),
-          line('value', 'Value', 120, TOKENS),
+          line('value', 'Value', 200, TOKENS),
           defineField({
             name: 'note',
             title: 'Small note (optional)',

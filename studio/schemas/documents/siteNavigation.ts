@@ -93,7 +93,7 @@ export const siteNavigation = defineType({
                     optionalList(
                       'flyout',
                       'Flyout (opens to the right)',
-                      8,
+                      12,
                       navLink(50),
                       'Optional. A short list that opens beside this dropdown link.'
                     ),
@@ -141,7 +141,7 @@ export const siteNavigation = defineType({
               type: 'object',
               fields: [
                 line('title', 'Column title', 24),
-                linkList('links', 'Links', [1, 10], 'The links in this column.'),
+                linkList('links', 'Links', [1, 12], 'The links in this column.'),
               ],
               preview: { select: { title: 'title' } },
             }),
