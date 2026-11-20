@@ -169,6 +169,19 @@ export const siteNavigation = defineType({
           fields: [
             line('eyebrow', 'Label', 40),
             line('name', 'Company name', 50),
+            defineField({
+              name: 'logoImage',
+              title: 'Company logo',
+              type: 'image',
+              description: 'Shown in the footer instead of the company name. Leave empty to use the built-in logo.',
+            }),
+            defineField({
+              name: 'logoAlt',
+              title: 'Company logo — alt text',
+              type: 'string',
+              description: 'Leave blank to use the company name.',
+              validation: (r) => r.max(140),
+            }),
             paragraph('description', 'Description', 140),
           ],
         }),

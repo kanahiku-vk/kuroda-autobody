@@ -59,7 +59,7 @@ export interface NavigationContent {
     /** Copyright line. */
     footNote: string;
     visit: { title: string; mobileTitle: string; linkText: string };
-    family: { eyebrow: string; name: string; description: string };
+    family: { eyebrow: string; name: string; description: string; href: string; logo?: ContentImage };
   };
 }
 

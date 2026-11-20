@@ -74,7 +74,11 @@ export function toDoc(base: NavigationContent): NavigationDoc {
         links: column.links.map((link) => labelled(link.text, link.href)),
       })),
       visit: base.footer.visit,
-      family: base.footer.family,
+      family: {
+        eyebrow: base.footer.family.eyebrow,
+        name: base.footer.family.name,
+        description: base.footer.family.description,
+      },
       copyright: base.footer.footNote,
       legalLinks: base.footer.secondaryLinks.map((link) => labelled(link.text, link.href)),
     },
@@ -168,6 +172,7 @@ export function fromDoc(doc: unknown, base: NavigationContent): NavigationConten
         eyebrow: text(family.eyebrow, base.footer.family.eyebrow),
         name: text(family.name, base.footer.family.name),
         description: text(family.description, base.footer.family.description),
+        href: base.footer.family.href,
       },
     },
   };

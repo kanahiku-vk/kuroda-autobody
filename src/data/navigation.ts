@@ -107,6 +107,7 @@ export const navigationData: NavigationContent = {
       eyebrow: 'OUR FAMILY OF COMPANIES.',
       name: 'Capitol Auto Service',
       description: 'Comprehensive mechanical, safety checks & automotive maintenance in Oʻahu.',
+      href: 'https://capitolautohi.com/',
     },
   },
 };

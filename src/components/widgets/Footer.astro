@@ -43,7 +43,7 @@ export interface Props {
   /** "Visit Us" column labels. */
   visit?: { title: string; mobileTitle: string; linkText: string };
   /** "Our Family of Companies" row. */
-  family?: { eyebrow: string; name: string; description: string };
+  family?: { eyebrow: string; name: string; description: string; href?: string; logo?: { src: string; alt: string } };
 }
 
 const {
@@ -137,10 +137,33 @@ const addressLine = `${street}, ${city}, ${state} ${zip} (${landmark})`;
     {/* ═══ Our Family of Companies ═══════════════════════════════════════ */}
     {
       family && (
-        <div class="flex flex-col gap-2.5 border-t border-white/[0.15] pt-5 md:flex-row md:items-baseline md:gap-10 md:pt-8">
+        <div class="flex flex-col gap-2.5 border-t border-white/[0.15] pt-5 md:flex-row md:items-center md:gap-10 md:pt-8">
           <p class="type-eyebrow shrink-0 text-on-dark-55">{family.eyebrow}</p>
-          <p class="font-display text-[15px] font-semibold leading-[22px] text-on-dark">{family.name}</p>
-          <p class="font-body text-[14px] leading-[1.5] text-on-dark-72 md:leading-[22px]">{family.description}</p>
+          {family.logo ? (
+            <img
+              src={family.logo.src}
+              alt={family.logo.alt}
+              width="500"
+              height="363"
+              loading="lazy"
+              class="h-14 w-auto shrink-0 md:h-16"
+            />
+          ) : (
+            <p class="font-display text-[15px] font-semibold leading-[22px] text-on-dark">{family.name}</p>
+          )}
+          <div class="flex flex-col gap-1">
+            <p class="font-body text-[14px] leading-[1.5] text-on-dark-72 md:leading-[22px]">{family.description}</p>
+            {family.href && (
+              <a
+                href={family.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-fit font-body text-[13px] leading-5 text-on-dark underline underline-offset-2 transition-opacity hover:opacity-80"
+              >
+                {family.href.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+              </a>
+            )}
+          </div>
         </div>
       )
     }
