@@ -153,6 +153,12 @@ Always-on routes (restyle, do not delete): `/contact`, `/reviews`, `/blog`, `/pr
 
 ---
 
+### Hero first-fold check (every site)
+
+The homepage hero must fill the viewport minus top banner + navbar, with nothing cropped. Follow
+`.cursor/rules/hero-first-fold.mdc` (measured `--hero-offset`, `100svh`, `clamp(..vh..)` spacing, `object-cover`).
+Verify at 1440×800, 1366×768 and 1920×1080 before sign-off.
+
 ## 4. Always-on stack (do not remove)
 
 | System                                  | Where                                                                     |

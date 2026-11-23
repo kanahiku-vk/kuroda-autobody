@@ -1,0 +1,31 @@
+---
+description: Homepage hero must fit exactly in the first fold (viewport minus top banner and navbar) with nothing cut off.
+alwaysApply: true
+---
+
+# Hero fills the first fold
+
+First fold = top utility banner + navbar + hero. The hero fills **exactly** the rest of the viewport on desktop,
+and no copy, button or credentials row is cropped. Content is scaled, never the images stretched.
+
+## Recipe (widget: `HomeHero.astro`, reuse for any homepage hero)
+
+1. **Section**: `data-home-hero` + `md:h-[max(560px,calc(100svh-var(--hero-offset,135px)))]`
+   (`svh`, not `vh`, so mobile browser toolbars are handled; 560px floor so very short windows scroll instead of crushing).
+2. **Offset is measured, not guessed**: a tiny inline `<script>` sets `--hero-offset` to
+   `hero.getBoundingClientRect().top + scrollY` (banner + nav height) on load and on `resize`.
+3. **Inner container**: `MaxWidthContainer` gets `md:h-full`; the copy column is `flex-1 md:justify-center`;
+   the credentials / trust bar stays last, so it sits on the bottom edge of the fold.
+4. **Scale content with viewport height** (desktop only) using `clamp(min, N vh, max)` with the Figma value as max:
+   - H1 `md:text-[clamp(40px,7vh,64px)] md:leading-[1.16]`
+   - spacers `md:h-[clamp(12px,3vh,40px)]` (40px), `clamp(10px,2.4vh,28px)` (28px), `clamp(8px,1.8vh,20px)` (20px)
+   - column padding `md:py-[clamp(16px,3vh,72px)]`; trust bar `md:py-[clamp(14px,2.6vh,28px)] md:pb-[clamp(20px,4vh,72px)]`
+5. **Images**: always `object-cover` in an absolutely-positioned box. Crop, never stretch; no fixed width/height on the `<img>`.
+6. **Mobile**: keep natural height (photo + stacked copy is taller than a phone fold). Do not force `h-[100svh]` there.
+
+## Do not
+
+- Hardcode the header height (e.g. `calc(100vh-140px)`) without the measured `--hero-offset`.
+- Use `100vh` (breaks on mobile toolbars) or a fixed `min-h-[776px]` that overflows short laptop screens.
+- Use `overflow-hidden` on the hero while content is taller than the box — shrink spacers/type instead.
+- Fork the hero per page; change `HomeHero` / `PageHero` props or classes.

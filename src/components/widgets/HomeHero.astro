@@ -41,7 +41,10 @@ const schedule = isScheduleEstimateCta(primaryCtaText);
 const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
 ---
 
-<section class="relative w-full overflow-hidden bg-surface-inverse md:min-h-[776px]">
+<section
+  data-home-hero
+  class="relative w-full overflow-hidden bg-surface-inverse md:h-[max(560px,calc(100svh-var(--hero-offset,135px)))]"
+>
   {/* Photo — right side, starts ~200px from left on desktop; grey placeholder until one is uploaded in Sanity */}
   <div
     class="absolute inset-x-0 top-0 h-[460px] overflow-hidden bg-section-grey md:inset-y-0 md:left-[200px] md:right-0 md:h-auto"
@@ -74,9 +77,9 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
   <div class="absolute inset-0 z-[1] hidden bg-hero-fade-top md:block" aria-hidden="true"></div>
 
   {/* Main content layout */}
-  <MaxWidthContainer class="relative z-[2] flex flex-col md:min-h-[776px]">
+  <MaxWidthContainer class="relative z-[2] flex flex-col md:h-full">
     {/* Copy column — Figma: pt-96, pb-72 */}
-    <div class="flex flex-1 flex-col pb-8 pt-[300px] md:pb-[72px] md:pt-24">
+    <div class="flex flex-1 flex-col pb-8 pt-[300px] md:justify-center md:py-[clamp(16px,3vh,72px)]">
       {/* Eyebrow — Small / Dark (Figma: 10.5px Lato Bold, 1.26px tracking) */}
       <div class="flex items-center gap-2">
         <span class="block h-[2px] w-[16px] shrink-0 rounded-[1px] bg-gradient-brand" aria-hidden="true"></span>
@@ -86,11 +89,11 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </div>
 
       {/* 40px spacer */}
-      <div class="h-4 md:h-10" aria-hidden="true"></div>
+      <div class="h-4 md:h-[clamp(12px,3vh,40px)]" aria-hidden="true"></div>
 
       {/* H1 — Unbounded Light 64px + SemiBold sky-gradient span */}
       <h1
-        class="font-display font-light text-[38px] leading-[1.08] tracking-[-0.03em] md:w-[709px] md:text-[64px] md:leading-[74px]"
+        class="font-display font-light text-[38px] leading-[1.08] tracking-[-0.03em] md:w-[709px] md:text-[clamp(40px,7vh,64px)] md:leading-[1.16]"
       >
         <span class="text-on-dark">{headingLead.trim()} </span><span class="text-gradient-hero-headline font-semibold"
           >{headingAccent}</span
@@ -98,7 +101,7 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </h1>
 
       {/* 28px spacer */}
-      <div class="h-5 md:h-7" aria-hidden="true"></div>
+      <div class="h-5 md:h-[clamp(10px,2.4vh,28px)]" aria-hidden="true"></div>
 
       {/* Tagline — Unbounded Regular 14px, sky accent */}
       <p
@@ -108,7 +111,7 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </p>
 
       {/* 20px spacer */}
-      <div class="h-3 md:h-5" aria-hidden="true"></div>
+      <div class="h-3 md:h-[clamp(8px,1.8vh,20px)]" aria-hidden="true"></div>
 
       {/* Lead body — Lato Regular 18px, leading 30px */}
       <p class="max-w-[540px] font-body text-[16px] leading-[1.55] text-on-dark-82 md:text-[18px] md:leading-[30px]">
@@ -116,7 +119,7 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </p>
 
       {/* 40px spacer */}
-      <div class="h-7 md:h-10" aria-hidden="true"></div>
+      <div class="h-7 md:h-[clamp(14px,3vh,40px)]" aria-hidden="true"></div>
 
       {/* Buttons — gap-12 */}
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -130,7 +133,7 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
     </div>
 
     {/* ── Credentials bar (Figma node 136:242) — border-t, pt-28, pb-72 ── */}
-    <div class="border-t border-on-dark-18 pb-10 pt-6 md:pb-[72px] md:pt-7">
+    <div class="border-t border-on-dark-18 pb-10 pt-6 md:py-[clamp(14px,2.6vh,28px)] md:pb-[clamp(20px,4vh,72px)]">
       <div class="grid grid-cols-2 gap-x-0 gap-y-4 lg:flex lg:gap-0">
         {
           trustItems.map((item) => (
@@ -157,3 +160,12 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
     </div>
   </MaxWidthContainer>
 </section>
+
+<script>
+  // Offset = space above the hero (utility bar + nav), so the hero fills exactly the rest of the first fold.
+  const hero = document.querySelector<HTMLElement>('[data-home-hero]');
+  const setOffset = () =>
+    hero?.style.setProperty('--hero-offset', `${hero.getBoundingClientRect().top + window.scrollY}px`);
+  setOffset();
+  window.addEventListener('resize', setOffset);
+</script>
