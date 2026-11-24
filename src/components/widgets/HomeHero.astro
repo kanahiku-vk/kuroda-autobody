@@ -43,11 +43,11 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
 
 <section
   data-home-hero
-  class="relative w-full overflow-hidden bg-surface-inverse md:h-[max(560px,calc(100svh-var(--hero-offset,135px)))]"
+  class="relative w-full overflow-hidden bg-surface-inverse min-h-[calc(100svh-var(--hero-offset,100px))] md:h-[max(560px,calc(100svh-var(--hero-offset,135px)))] md:min-h-0"
 >
   {/* Photo — right side, starts ~200px from left on desktop; grey placeholder until one is uploaded in Sanity */}
   <div
-    class="absolute inset-x-0 top-0 h-[460px] overflow-hidden bg-section-grey md:inset-y-0 md:left-[200px] md:right-0 md:h-auto"
+    class="absolute inset-x-0 top-0 h-[clamp(200px,34svh,460px)] overflow-hidden bg-section-grey md:inset-y-0 md:left-[200px] md:right-0 md:h-auto"
     role={image ? undefined : 'img'}
     aria-label={image ? undefined : imageAlt}
   >
@@ -71,7 +71,11 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
   </div>
 
   {/* Gradient overlays (Figma node 136:219–221) */}
-  <div class="absolute inset-x-0 top-0 z-[1] h-[470px] bg-hero-fade-mobile md:hidden" aria-hidden="true"></div>
+  <div
+    class="absolute inset-x-0 top-0 z-[1] h-[clamp(210px,35svh,470px)] bg-hero-fade-mobile md:hidden"
+    aria-hidden="true"
+  >
+  </div>
   <div class="absolute inset-0 z-[1] hidden bg-hero-fade-left md:block" aria-hidden="true"></div>
   <div class="absolute inset-0 z-[1] hidden bg-hero-fade-bottom md:block" aria-hidden="true"></div>
   <div class="absolute inset-0 z-[1] hidden bg-hero-fade-top md:block" aria-hidden="true"></div>
@@ -79,7 +83,9 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
   {/* Main content layout */}
   <MaxWidthContainer class="relative z-[2] flex flex-col md:h-full">
     {/* Copy column — Figma: pt-96, pb-72 */}
-    <div class="flex flex-1 flex-col pb-8 pt-[300px] md:justify-center md:py-[clamp(16px,3vh,72px)]">
+    <div
+      class="flex flex-1 flex-col pb-[clamp(16px,3svh,32px)] pt-[clamp(120px,24svh,300px)] md:justify-center md:py-[clamp(16px,3vh,72px)]"
+    >
       {/* Eyebrow — Small / Dark (Figma: 10.5px Lato Bold, 1.26px tracking) */}
       <div class="flex items-center gap-2">
         <span class="block h-[2px] w-[16px] shrink-0 rounded-[1px] bg-gradient-brand" aria-hidden="true"></span>
@@ -89,11 +95,11 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </div>
 
       {/* 40px spacer */}
-      <div class="h-4 md:h-[clamp(12px,3vh,40px)]" aria-hidden="true"></div>
+      <div class="h-[clamp(8px,1.6svh,16px)] md:h-[clamp(12px,3vh,40px)]" aria-hidden="true"></div>
 
       {/* H1 — Unbounded Light 64px + SemiBold sky-gradient span */}
       <h1
-        class="font-display font-light text-[38px] leading-[1.08] tracking-[-0.03em] md:w-[709px] md:text-[clamp(40px,7vh,64px)] md:leading-[1.16]"
+        class="font-display font-light text-[clamp(26px,4.8svh,38px)] leading-[1.08] tracking-[-0.03em] md:w-[709px] md:text-[clamp(40px,7vh,64px)] md:leading-[1.16]"
       >
         <span class="text-on-dark">{headingLead.trim()} </span><span class="text-gradient-hero-headline font-semibold"
           >{headingAccent}</span
@@ -101,7 +107,7 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </h1>
 
       {/* 28px spacer */}
-      <div class="h-5 md:h-[clamp(10px,2.4vh,28px)]" aria-hidden="true"></div>
+      <div class="h-[clamp(8px,1.8svh,20px)] md:h-[clamp(10px,2.4vh,28px)]" aria-hidden="true"></div>
 
       {/* Tagline — Unbounded Regular 14px, sky accent */}
       <p
@@ -111,15 +117,17 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
       </p>
 
       {/* 20px spacer */}
-      <div class="h-3 md:h-[clamp(8px,1.8vh,20px)]" aria-hidden="true"></div>
+      <div class="h-[clamp(6px,1.2svh,12px)] md:h-[clamp(8px,1.8vh,20px)]" aria-hidden="true"></div>
 
       {/* Lead body — Lato Regular 18px, leading 30px */}
-      <p class="max-w-[540px] font-body text-[16px] leading-[1.55] text-on-dark-82 md:text-[18px] md:leading-[30px]">
+      <p
+        class="max-w-[540px] font-body text-[clamp(14px,1.9svh,16px)] leading-[1.5] text-on-dark-82 md:text-[18px] md:leading-[30px]"
+      >
         {body}
       </p>
 
       {/* 40px spacer */}
-      <div class="h-7 md:h-[clamp(14px,3vh,40px)]" aria-hidden="true"></div>
+      <div class="h-[clamp(12px,2.4svh,28px)] md:h-[clamp(14px,3vh,40px)]" aria-hidden="true"></div>
 
       {/* Buttons — gap-12 */}
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -133,8 +141,10 @@ const primaryHref = schedule ? SCHEDULE_CTA_HREF : PRIMARY_CTA_HREF;
     </div>
 
     {/* ── Credentials bar (Figma node 136:242) — border-t, pt-28, pb-72 ── */}
-    <div class="border-t border-on-dark-18 pb-10 pt-6 md:py-[clamp(14px,2.6vh,28px)] md:pb-[clamp(20px,4vh,72px)]">
-      <div class="grid grid-cols-2 gap-x-0 gap-y-4 lg:flex lg:gap-0">
+    <div
+      class="border-t border-on-dark-18 pb-[clamp(16px,3svh,40px)] pt-[clamp(12px,2.4svh,24px)] md:py-[clamp(14px,2.6vh,28px)] md:pb-[clamp(20px,4vh,72px)]"
+    >
+      <div class="grid grid-cols-2 gap-x-0 gap-y-[clamp(8px,1.6svh,16px)] lg:flex lg:gap-0">
         {
           trustItems.map((item) => (
             <div class="flex items-center gap-[10px] lg:flex-1 lg:gap-3">

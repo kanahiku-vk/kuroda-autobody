@@ -6,7 +6,22 @@
 import MaxWidthContainer from '~/components/ui/MaxWidthContainer.astro';
 import SocialLinks from '~/components/ui/SocialLinks.astro';
 import { CONTACT } from '~/config/contact';
+import { getActiveNotice } from '~/lib/content/notice';
+
+const notice = await getActiveNotice();
 ---
+
+{
+  notice && (
+    <div class="w-full bg-surface-inverse" role="status">
+      <MaxWidthContainer class="flex items-center justify-center gap-2 py-2 text-center">
+        <p class="font-body text-[11px] leading-4 tracking-[0.06em] text-on-dark md:text-[12px]">
+          <strong class="font-bold uppercase tracking-[0.12em]">{notice.label}:</strong> {notice.message}
+        </p>
+      </MaxWidthContainer>
+    </div>
+  )
+}
 
 <div class="w-full border-b border-heading/[0.08] bg-banner">
   <MaxWidthContainer class="flex items-center justify-between py-2 md:py-[10px]">

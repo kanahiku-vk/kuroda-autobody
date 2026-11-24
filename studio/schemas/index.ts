@@ -6,6 +6,7 @@ import { contentPage } from './documents/contentPage';
 import { homePage } from './documents/homePage';
 import { locationPage } from './documents/locationPage';
 import { pagePhotos } from './documents/pagePhotos';
+import { siteNotice } from './documents/siteNotice';
 import { ratingsBar } from './documents/ratingsBar';
 import { testimonial } from './documents/testimonial';
 import { jobOpening } from './documents/jobOpening';
@@ -21,6 +22,7 @@ export const schemaTypes = [
   onlineEstimatePage,
   contentPage,
   ratingsBar,
+  siteNotice,
   pagePhotos,
   siteNavigation,
   blogPost,

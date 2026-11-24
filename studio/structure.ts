@@ -171,6 +171,10 @@ export const structure = (S: StructureBuilder) =>
         ),
       S.divider(),
       S.listItem()
+        .title('Site notice (top banner)')
+        .schemaType('siteNotice')
+        .child(S.document().schemaType('siteNotice').documentId('siteNotice').title('Site notice')),
+      S.listItem()
         .title('Ratings bar (site-wide)')
         .schemaType('ratingsBar')
         .child(S.document().schemaType('ratingsBar').documentId('ratingsBar').title('Ratings bar')),
@@ -223,6 +227,7 @@ export const singletonTypes = new Set<string>([
   'onlineEstimatePage',
   'contentPage',
   'ratingsBar',
+  'siteNotice',
   'pagePhotos',
   'siteNavigation',
 ]);

@@ -5,6 +5,7 @@
  *   src/config/contact.ts  phone, email, address, hours
  *   src/config/social.ts   profile URLs
  *   src/config/cta.ts      button labels
+ *   src/config/notice.ts   dated site-wide notice strip (holiday hours)
  *   src/brand.ts           colors, fonts, radius
  *
  *   import { site, CONTACT, SOCIAL, PRIMARY_CTA_LABEL } from '~/config';
@@ -12,6 +13,8 @@
 export { site, siteHost, siteOrigin } from './site';
 export { CONTACT } from './contact';
 export { SOCIAL } from './social';
+export { noticeFallback, isNoticeVisible } from './notice';
+export type { SiteNotice } from './notice';
 export {
   PRIMARY_CTA_LABEL,
   PRIMARY_CTA_HREF,

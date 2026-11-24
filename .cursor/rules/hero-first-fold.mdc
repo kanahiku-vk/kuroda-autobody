@@ -3,7 +3,7 @@ description: Homepage hero must fit exactly in the first fold (viewport minus to
 alwaysApply: true
 ---
 
-# Hero fills the first fold
+# Hero fills the first fold (desktop + mobile)
 
 First fold = top utility banner + navbar + hero. The hero fills **exactly** the rest of the viewport on desktop,
 and no copy, button or credentials row is cropped. Content is scaled, never the images stretched.
@@ -21,7 +21,18 @@ and no copy, button or credentials row is cropped. Content is scaled, never the 
    - spacers `md:h-[clamp(12px,3vh,40px)]` (40px), `clamp(10px,2.4vh,28px)` (28px), `clamp(8px,1.8vh,20px)` (20px)
    - column padding `md:py-[clamp(16px,3vh,72px)]`; trust bar `md:py-[clamp(14px,2.6vh,28px)] md:pb-[clamp(20px,4vh,72px)]`
 5. **Images**: always `object-cover` in an absolutely-positioned box. Crop, never stretch; no fixed width/height on the `<img>`.
-6. **Mobile**: keep natural height (photo + stacked copy is taller than a phone fold). Do not force `h-[100svh]` there.
+6. **Mobile (below `md`) — same goal, same offset, `svh`-scaled.** The hero is `min-h`, not `h`, on mobile, so if a very
+   small phone cannot fit everything the page scrolls a little — content is never cropped.
+   - Section: `min-h-[calc(100svh-var(--hero-offset,100px))] md:h-[max(560px,calc(100svh-var(--hero-offset,135px)))] md:min-h-0`
+     (the same measured `--hero-offset` script covers mobile: banner + nav are shorter there).
+   - Photo band + fade overlay scale with height: `h-[clamp(200px,34svh,460px)]` / `h-[clamp(210px,35svh,470px)]`.
+   - Copy column: `pt-[clamp(120px,24svh,300px)] pb-[clamp(16px,3svh,32px)]` (copy overlaps the lower photo fade).
+   - H1 `text-[clamp(26px,4.8svh,38px)]`; body `text-[clamp(14px,1.9svh,16px)] leading-[1.5]`.
+   - Spacers `h-[clamp(8px,1.6svh,16px)]`, `clamp(8px,1.8svh,20px)`, `clamp(6px,1.2svh,12px)`, `clamp(12px,2.4svh,28px)`.
+   - Credentials bar: `pt-[clamp(12px,2.4svh,24px)] pb-[clamp(16px,3svh,40px)]`, grid `gap-y-[clamp(8px,1.6svh,16px)]`.
+   - Use `svh` (not `vh`) in every mobile clamp; desktop keeps `vh`. Mobile minimums are the floor — do not go below them.
+   - Verify at 390×844, 375×667 and 430×932 (mobile emulation); the CTA buttons and credentials row must be visible
+     without scrolling on 390×844 and 430×932.
 
 ## Do not
 
