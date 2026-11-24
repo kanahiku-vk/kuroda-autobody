@@ -31,7 +31,6 @@ export default defineConfig({
   output: 'server',
   trailingSlash: 'always',
   adapter: vercel({
-    edgeMiddleware: true,
     isr: {
       expiration: 60 * 5,
       bypassToken: isrBypassToken,
